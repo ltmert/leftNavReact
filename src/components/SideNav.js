@@ -1,19 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import SideItem from './SideItem';
 import {NavItems} from '../data/NavItemData'
 
 
-const SideNav =()=> {
+const SideNav =({ url = 'http://localhost:8000/data.php' })=> {
+    const [navItems, setNavItems] = useState(NavItems);
+    const handleItemClick = useCallback(
+      (e) => {
+        // clone the tree
+        const newTree = [...navItems];
+        // todo: find the item in the "navItems" state and change it.
+        // modify newTree's matching item from the e.target
+        setNavItems(newTree);
+      },
+      [navItems]
+    );  
     
+    useEffect(async () => {
+        const response = await fetch(url);
+        // const data = await response.json()
+        // do something with the data
+        // setNavItems(data)
+      }, [url]);  
+
 return (
     <div style={sideNavStyle}>
         <h2 style={headerStyle}>Side Navigation</h2>
-        {NavItems.map((navItem, index)=>{
-            return (
-                <SideItem key={index} items={navItem}/>
-            )
-        }
-            )}
+        
+        <SideItem items={navItems}  handleItemClick={handleItemClick}/>
+     
     </div>
 );
 };

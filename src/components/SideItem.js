@@ -8,7 +8,7 @@ const hasChildren = (item) => {
   };
 
     const SideItem =({items,handleItemClick})=>{
-        const{name,links,image,open}=items;
+        //const{name,links,image,open}=items;
         const [isOpen,setIsOpen]=React.useState(false);//open
         
         const handleClick = useCallback(
@@ -22,23 +22,39 @@ const hasChildren = (item) => {
           //  setOpen(!isOpen);
         //};
     return (
-    <div style={{ paddingLeft: '8px' }}>   {//onMouseEnter={()=>openSideNav()} onMouseLeave={()=>openSideNav()} style={sideItemStyle}>}
-    <p style={nameStyle}>{name}</p>
-    {isOpen && links.map((link,index)=>{
-        const {title, to,image}=link;
-       return (
-           <div key={index} style={linkContainerStyle}>
-           <a style={linkStyle} href={to}>
-           <img src={image} alt="Node" width="40" height="48" padding-right="10px" align="left"></img>
-           <p style={nameStyle}>{title}<i style={arrow}></i></p>
-         
-           </a>
-           </div>
-       ) 
-    })}
-    </div>
+        <div style={{ paddingLeft: '8px' }}>
+        {items &&
+          items.map((item) => {
+            const { name, link, image,alt } = item;
+            console.log(`name: `, name, ` link: `, link);
+            return (
+              <div key={name}>
+                {(link && (
+                  <div onClick={handleClick} style={linkContainerStyle}>
+                    <a href={link} style={linkStyle}>
+                    <img src={image} alt={alt} width="40" height="48"  align="left"></img>
+                      <p style={nameStyle}>{name} <img src="./arrowImg.png" alt="arrow"></img>
+                      </p>
+                    </a>
+                  </div>
+                )) || (
+                  <div onClick={handleClick}>
+                  <img src={image} alt={alt} width="40" height="48" align="left"></img>
+                    <p style={nameStyle}>{name}</p>
+                  </div>
+                )}
+                {isOpen && hasChildren(item) && (
+                  <SideItem style={sideItemStyle}
+                  items={item.nodes}
+                    handleItemClick={handleItemClick}
+                  />
+                )}
+              </div>
+            );
+          })}
+      </div>
     );
-};
+  };
 const nameStyle ={
     margin:"10px",
     fontWeight:"600",
@@ -61,7 +77,7 @@ const sideItemStyle = {
 const linkContainerStyle ={
     height:"auto",
     width:"350px",
-    marginLeft:"50px",
+    marginLeft:"10px",
     paddingTop:"1px",
     textIndent:"5px",
     background:"rgb(187,187,187)",
@@ -88,7 +104,7 @@ const arrow= {
     display: "inline-block",
     padding: "3px",
   };
-  return
+  export default SideItem;
 
  
 

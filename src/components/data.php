@@ -1,6 +1,7 @@
 <?php
 
 header("Content-Type:application/json");
+header("Access-Control-Allow-Origin");
 //DB results
 $nodes = array(
       array("id"=> 0,

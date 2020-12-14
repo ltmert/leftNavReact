@@ -8,7 +8,7 @@ class dataApi {
                 'Accept':'application/json, text/plain, */*',
                 'Content-Type': 'application/json',
             },
-            'credentials': 'same-origin'
+           // 'credentials': 'same-origin'
     })
     .then(res => res.json());        
 }

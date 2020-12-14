@@ -1,31 +1,49 @@
 export const NavItems= [
     {
-        name: "Node 0",
-        links:[
-            {title:"Node 0-1", to:"https://picsum.photos/200/200/?random&b", image:"https://picsum.photos/200/200/?random&a"},
-           
-        ],
-        open:false,
-    },
-    {
-        name: "Node 1",
-        links:[
-            {title:"Node 1-1", to:"https://picsum.photos/200/200/?random&a",image:"https://picsum.photos/200/200/?random&a"},
-        ],
-        open:false,
-    },
-        {
-            name: "Node 2",
-            links:[
-                
+        name: 'Node 0',
+        link:'#',
+        image:'https://picsum.photos/200/200/?random&e',
+        alt:'node_pic',
+        nodes: [
+          {
+            name: 'Node 1 - 1',
+            link:'#',
+            image:'https://picsum.photos/200/200/?random&f',
+            alt:'node_pic',
+            nodes: [
+              {
+                name: 'Node 1 - 1 - 1',
+                link: 'https://picsum.photos/200/200/?random&b',
+                image:"https://picsum.photos/200/200/?random&a",
+                alt:'node_pic',
+              },
             ],
-            open:false,
-        },
+          },
+          {
+            name: 'Node 1 - 2',
+            link: '#',
+            image:"https://picsum.photos/200/200/?random&a",
+            alt:'node_pic',
+          },
+        ],
+      },
+        {
+            name: 'Node 2',
+    link: '#',
+    image:"https://picsum.photos/200/200/?random&a",
+    alt:'node_pic',
+    nodes: [
+      {
+        name: 'Node 2 - 1',
+        link:'#',
+        image:'https://picsum.photos/200/200/?random&f',
+        alt:'node_pic',
+      }
+      ],
+  },
             {
-                name: "Node 3",
-                links:[
-                    {title:"Node3-3", to:"https://picsum.photos/200/200/?random&c",image:"https://picsum.photos/200/200/?random&d"},
-                ],
-                open:false,
-            },
+                name: 'Node 3',
+    link: '#',
+    image:"https://picsum.photos/200/200/?random&a",
+  },
 ];
